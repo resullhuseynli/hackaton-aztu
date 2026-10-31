@@ -13,6 +13,47 @@ Bakı avtobus şəbəkəsi üçün funksional prototip. İki ayrı tətbiqdən i
 
 ---
 
+## GitHub
+
+**Repozitoriya:** [https://github.com/resullhuseynli/hackaton-aztu](https://github.com/resullhuseynli/hackaton-aztu)
+
+### Layihəni necə yükləmək olar
+
+**Git ilə (tövsiyə olunur):**
+
+```bash
+git clone https://github.com/resullhuseynli/hackaton-aztu.git
+cd hackaton-aztu
+```
+
+**Git olmadan:** repozitoriya səhifəsində yaşıl **Code** düyməsi → **Download ZIP** → arxivi açın və
+`hackaton-aztu` qovluğuna keçin.
+
+**Yeniləmələri almaq** (layihə artıq clone olunubsa):
+
+```bash
+cd hackaton-aztu
+git pull
+```
+
+`git pull`-dan sonra backend-də `requirements.txt` və ya frontend-də `package.json` dəyişibsə, aşağıdakı
+quraşdırma əmrlərini (`pip install` və `npm install`) yenidən işə salın.
+
+### Qısa istifadə qaydası
+
+1. **Clone edin** (yuxarıdakı əmrlər).
+2. **Backend-i qurun və işə salın** — `backend` qovluğunda Python mühiti yaradın, paketləri quraşdırın,
+   `python -m app.seed` ilə bazanı qurun və `uvicorn` ilə API-ni işə salın (port 8000).
+3. **Frontend paketlərini quraşdırın** — `frontend` qovluğunda `npm install`.
+4. **Sərnişin tətbiqini işə salın** — `npm run dev:passenger` → http://localhost:3000
+5. **Operator tətbiqini işə salın** — ayrı terminalda `npm run dev:operator` → http://localhost:3001
+6. **İstifadə edin** — sərnişin tətbiqində xətt və ya dayanacaq seçin, canlı avtobusları və ETA-nı izləyin,
+   sıxlıq bildirin; operator panelində sıxlığı izləyin, xəbərdarlıqlara baxın və avtobus yönləndirin.
+
+Hər addımın dəqiq əmrləri aşağıdakı **"Quraşdırma və işə salma"** bölməsindədir.
+
+---
+
 ## Tələblər
 
 | Proqram | Versiya | Yoxlamaq üçün |
@@ -331,6 +372,29 @@ Linklə birbaşa açmaq: `http://localhost:3000/?line=1&stop=1394`, `http://loca
 | Xəritə boz görünür | İnternet bağlantısını yoxlayın — plitələr OpenStreetMap-dən yüklənir |
 | `npm warn install-scripts ... esbuild` | Zərərsizdir, tətbiq işləyir |
 | Backend yenidən başladılanda tarixçə itir | Gözlənilir: simulyasiya hər dəfə `SIM_START` saatından yenidən başlayır |
+
+## Süni intellektdən (AI) istifadə
+
+Layihədə süni intellekt kod yazmaq üçün köməkçi alət kimi istifadə olunub. İşin bölgüsü:
+
+| Mərhələ | Kim tərəfindən |
+|---|---|
+| Problemin təhlili və həll ideyası | Komanda |
+| Layihənin strukturu və arxitekturası | Komanda |
+| Verilənlər bazasının qurulması (cədvəllər və onların əlaqələri) | Komanda |
+| API endpoint-lərinin müəyyən edilməsi | Komanda |
+| Kodun yazılması | [Claude Code](https://claude.com/claude-code) (Anthropic), komandanın tələbləri əsasında |
+| Konfiqurasiya fayllarının düzəldilməsi | Komanda |
+| UI səhvlərinin düzəldilməsi | Komanda |
+| Testlərin düzəldilməsi | Komanda |
+
+İş prosesi:
+
+1. Komanda ideyanı, layihənin strukturunu, verilənlər bazasını və endpoint-ləri müəyyən etdi.
+2. Kod bu tələblər əsasında Claude Code ilə yazıldı.
+3. Proses bitdikdən sonra komanda konfiqurasiya fayllarını, UI səhvlərini və testləri yoxlayıb düzəltdi.
+
+Git tarixçəsində Claude Code ilə yazılmış commit-lər `Co-Authored-By: Claude` qeydi ilə işarələnib.
 
 ## Məhdudiyyətlər
 
