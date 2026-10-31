@@ -1,0 +1,19 @@
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+
+# Database is rebuilt from backend/sources/bus_lines.json with `python -m app.seed`
+backend/database/*.db
+backend/database/*.db-wal
+backend/database/*.db-shm
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
