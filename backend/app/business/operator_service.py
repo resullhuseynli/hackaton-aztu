@@ -19,7 +19,6 @@ class LineDensity:
     snapshot: DensitySnapshot
     trend: str                 # "up" | "down" | "flat"
     reports_last_window: int
-    waiting_passengers: int
     has_open_alert: bool
 
 
@@ -37,7 +36,6 @@ class Overview:
     average_occupancy: float
     lines_by_level: dict[DensityLevel, int]
     open_alerts: int
-    waiting_passengers: int
     reports_last_window: int
 
 
@@ -73,7 +71,6 @@ class OperatorService:
             average_occupancy=round(sum(b.passenger_percentage for b in buses) / len(buses), 1) if buses else 0.0,
             lines_by_level=levels,
             open_alerts=len(self.alert_repo.open_line_ids()),
-            waiting_passengers=sum(self.simulation.waiting_by_line().values()),
             reports_last_window=sum(self.report_repo.count_by_line(now - self.report_window).values()),
         )
 
@@ -84,7 +81,6 @@ class OperatorService:
             return []
         past = self.density_repo.scores_at(now - TREND_WINDOW)
         reports = self.report_repo.count_by_line(now - self.report_window)
-        waiting = self.simulation.waiting_by_line()
         open_lines = self.alert_repo.open_line_ids()
         lines = {line.id: line for line in self.network_repo.list_lines()}
         result = []
@@ -99,7 +95,6 @@ class OperatorService:
             result.append(LineDensity(
                 line=lines[snapshot.line_id], snapshot=snapshot, trend=trend,
                 reports_last_window=reports.get(snapshot.line_id, 0),
-                waiting_passengers=waiting.get(snapshot.line_id, 0),
                 has_open_alert=snapshot.line_id in open_lines,
             ))
         result.sort(key=lambda d: d.snapshot.score, reverse=True)

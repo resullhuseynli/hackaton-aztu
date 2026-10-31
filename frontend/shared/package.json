@@ -1,0 +1,16 @@
+{
+  "name": "@transit/shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Code shared by the passenger and operator apps: API client, map, UI components, styles.",
+  "exports": {
+    "./*": "./src/*"
+  },
+  "dependencies": {
+    "leaflet": "1.9.4",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-leaflet": "5.0.0"
+  }
+}

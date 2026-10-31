@@ -23,7 +23,9 @@ class Settings:
     report_window_minutes: int = 10
     history_retention_minutes: int = 180
 
-    cors_origins: tuple[str, ...] = ("http://localhost:3000", "http://127.0.0.1:3000")
+    # Passenger app (3000) and operator app (3001)
+    cors_origins: tuple[str, ...] = ("http://localhost:3000", "http://127.0.0.1:3000",
+                                     "http://localhost:3001", "http://127.0.0.1:3001")
 
 
 settings = Settings()

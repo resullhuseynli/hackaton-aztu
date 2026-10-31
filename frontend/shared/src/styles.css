@@ -27,11 +27,7 @@ input { font: inherit; }
 }
 .brand { font-weight: 700; font-size: 17px; display: flex; align-items: center; gap: 8px; }
 .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue); }
-.nav { display: flex; gap: 4px; }
-.nav a {
-  padding: 8px 14px; border-radius: 8px; color: var(--muted); text-decoration: none; font-weight: 500;
-}
-.nav a.active { background: #e8f0fe; color: var(--blue); }
+.app-tag { padding: 6px 12px; border-radius: 8px; background: #e8f0fe; color: var(--blue); font-weight: 600; font-size: 14px; }
 .clock { margin-left: auto; display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; }
 .clock strong { color: var(--ink); font-size: 16px; font-variant-numeric: tabular-nums; }
 .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--low); box-shadow: 0 0 0 3px #16a34a33; }
@@ -142,7 +138,7 @@ input { font: inherit; }
 .bus-pin.layover { opacity: .55; }
 
 /* ---- operator ---- */
-.kpis { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; padding: 12px 16px; background: var(--bg); }
+.kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 12px 16px; background: var(--bg); }
 .kpi { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
 .kpi-label { font-size: 12px; color: var(--muted); }
 .kpi-value { font-size: 22px; font-weight: 700; margin-top: 2px; font-variant-numeric: tabular-nums; }

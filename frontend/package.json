@@ -1,19 +1,15 @@
 {
   "name": "smart-transit-frontend",
   "private": true,
-  "version": "1.0.0",
-  "type": "module",
+  "workspaces": [
+    "shared",
+    "passenger",
+    "operator"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "leaflet": "1.9.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-leaflet": "5.0.0",
-    "react-router-dom": "7.6.2"
+    "dev:passenger": "npm run dev --workspace passenger",
+    "dev:operator": "npm run dev --workspace operator",
+    "build": "npm run build --workspace passenger && npm run build --workspace operator"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "4.5.2",

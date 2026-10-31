@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { CircleMarker, Marker, Polyline, Popup, Tooltip } from "react-leaflet";
-import { api, useLive, usePolling } from "../api";
-import { DensityBadge, LoadBar, useToast } from "../components/common";
-import { BaseMap, BusMarker, FitBounds, busIcon } from "../components/map";
-import { LEVEL_COLOR, LEVEL_LABEL, REPORT_OPTIONS, directionName, formatDistance, formatEta, pct } from "../format";
+import { api, useLive, usePolling } from "@transit/shared/api.js";
+import { DensityBadge, LoadBar, useToast } from "@transit/shared/components/common.jsx";
+import { BaseMap, BusMarker, FitBounds, busIcon } from "@transit/shared/components/map.jsx";
+import { LEVEL_COLOR, LEVEL_LABEL, REPORT_OPTIONS, directionName, formatDistance, formatEta, pct } from "@transit/shared/format.js";
 
 const urlParam = (name) => {
   const value = new URLSearchParams(window.location.search).get(name);

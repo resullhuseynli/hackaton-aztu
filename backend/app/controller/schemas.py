@@ -177,7 +177,6 @@ class OverviewOut(BaseModel):
     average_occupancy: float
     lines_by_level: dict[DensityLevel, int]
     open_alerts: int
-    waiting_passengers: int
     reports_last_window: int
 
     @classmethod
@@ -197,7 +196,6 @@ class LineDensityOut(BaseModel):
     active_buses: int
     trend: str
     reports_last_window: int
-    waiting_passengers: int
     has_open_alert: bool
     computed_at: datetime
 
@@ -208,8 +206,7 @@ class LineDensityOut(BaseModel):
             line_id=d.line.id, line_number=d.line.number, first_point=d.line.first_point,
             last_point=d.line.last_point, occupancy_pct=s.occupancy_pct, report_score=s.report_score,
             score=s.score, level=s.level, active_buses=s.active_buses, trend=d.trend,
-            reports_last_window=d.reports_last_window, waiting_passengers=d.waiting_passengers,
-            has_open_alert=d.has_open_alert, computed_at=s.computed_at,
+            reports_last_window=d.reports_last_window, has_open_alert=d.has_open_alert, computed_at=s.computed_at,
         )
 
 

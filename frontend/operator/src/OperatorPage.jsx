@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CircleMarker, Polyline, Tooltip } from "react-leaflet";
-import { api, useLive, usePolling } from "../api";
-import { DensityBadge, Sparkline, beep, useToast } from "../components/common";
-import { BaseMap, BusMarker, FitBounds } from "../components/map";
-import { LEVEL_COLOR, LEVEL_LABEL, formatClock, pct } from "../format";
+import { api, useLive, usePolling } from "@transit/shared/api.js";
+import { DensityBadge, Sparkline, beep, useToast } from "@transit/shared/components/common.jsx";
+import { BaseMap, BusMarker, FitBounds } from "@transit/shared/components/map.jsx";
+import { LEVEL_COLOR, LEVEL_LABEL, formatClock, pct } from "@transit/shared/format.js";
 
 const LEVEL_FILTERS = [
   { value: null, label: "Hamısı" },
@@ -191,10 +191,6 @@ function Kpis({ overview }) {
         </div>
       </div>
       <div className="kpi">
-        <div className="kpi-label">Dayanacaqlarda gözləyən</div>
-        <div className="kpi-value">{o?.waiting_passengers?.toLocaleString("az") ?? "—"}</div>
-      </div>
-      <div className="kpi">
         <div className="kpi-label">Sərnişin bildirişi (10 dəq)</div>
         <div className="kpi-value">{o?.reports_last_window ?? "—"}</div>
       </div>
@@ -263,7 +259,7 @@ function SelectedLine({ detail, density, history, onSurge, onClose }) {
           <span>Doluluq: {pct(density.occupancy_pct)}</span>
           <span>Bildiriş balı: {density.report_score ?? "—"}</span>
           <span>Avtobus: {density.active_buses}</span>
-          <span>Gözləyən: {density.waiting_passengers}</span>
+          <span>Bildirişlər: {density.reports_last_window}</span>
         </div>
       )}
       <div className="section-title" style={{ marginTop: 12 }}>
@@ -311,7 +307,6 @@ function DensityTable({ rows, selectedId, onSelect }) {
             <th className="num">Doluluq</th>
             <th className="num">Bildiriş balı</th>
             <th className="num">Bildirişlər</th>
-            <th className="num">Gözləyən</th>
             <th className="num">Avtobus</th>
             <th>Trend</th>
           </tr>
@@ -340,7 +335,6 @@ function DensityTable({ rows, selectedId, onSelect }) {
                 <td className="num">{pct(r.occupancy_pct)}</td>
                 <td className="num">{r.report_score ?? "—"}</td>
                 <td className="num">{r.reports_last_window}</td>
-                <td className="num">{r.waiting_passengers}</td>
                 <td className="num">{r.active_buses}</td>
                 <td className={cls}>{arrow}</td>
               </tr>

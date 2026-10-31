@@ -30,8 +30,9 @@ class TransitEngine:
         self.simulation.start()
         self._on_minute(self.clock.now().replace(second=0, microsecond=0))
 
-    def step(self) -> None:
-        dt = self.tick_seconds * self.clock.speed
+    def step(self, sim_seconds: float | None = None) -> None:
+        """Advance the simulation by sim_seconds (default: one real tick at the clock's speed)."""
+        dt = sim_seconds if sim_seconds is not None else self.tick_seconds * self.clock.speed
         now = self.clock.advance(dt)
         self.simulation.tick(dt)
         minute = now.replace(second=0, microsecond=0)
@@ -49,10 +50,11 @@ class TransitEngine:
 
     async def run(self) -> None:
         loop = asyncio.get_running_loop()
+        next_tick = loop.time() + self.tick_seconds
         while True:
-            started = loop.time()
+            await asyncio.sleep(max(0.0, next_tick - loop.time()))
+            next_tick += self.tick_seconds
             try:
                 await asyncio.to_thread(self.step)
             except Exception:
                 log.exception("engine step failed")
-            await asyncio.sleep(max(0.0, self.tick_seconds - (loop.time() - started)))

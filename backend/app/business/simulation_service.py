@@ -304,13 +304,6 @@ class SimulationService:
 
     # ---- operator / demo actions -------------------------------------------------------------
 
-    def waiting_by_line(self) -> dict[int, int]:
-        with self._lock:
-            totals: dict[int, float] = {}
-            for (line_id, _, _), waiting in self._waiting.items():
-                totals[line_id] = totals.get(line_id, 0.0) + waiting
-            return {line_id: int(total) for line_id, total in totals.items()}
-
     def surge(self, line_id: int) -> bool:
         """Demo: make a line suddenly overcrowded for SURGE_DURATION."""
         with self._lock:
